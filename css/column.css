@@ -1,0 +1,262 @@
+/* ============================================================
+   CSV CONSULTING LIMITED — コラム（一覧・記事）専用スタイル
+   style.css / service.css と併用。配色・書体・余白のルールは共通。
+   ============================================================ */
+
+/* ── コラム一覧のヒーロー帯（固定ヘッダーの直下・このページのみパララックスなしの通常背景） ── */
+.band-column{
+  margin-top:72px;
+  height:auto; min-height:0;
+  aspect-ratio:3/1;   /* PCは21:9より薄く詰める(1440px幅で約480px) */
+}
+.band-column::after{
+  position:absolute;   /* 共通.bandのposition:fixed(パララックス)を解除 */
+  background-image:url('../images/column-hero.webp');
+  background-position:center 67%;  /* 上の空と下の道路を削り、トラム全体(屋根154〜車体下部)を残す */
+}
+.band-column::before{
+  content:""; position:absolute; inset:0; z-index:-1;
+  background:rgba(30,42,58,.55);
+}
+@media (max-width:900px){
+  .band-column{ margin-top:64px; height:auto; min-height:0; aspect-ratio:4/3; }
+  .band-column::after{ background-image:url('../images/column-hero-sp.webp'); }
+  .band-column .band-word{ font-size:17px; letter-spacing:.22em; }
+}
+
+/* ── コラム一覧 ── */
+.col-sec{ background:var(--paper); padding:96px 0 130px; }
+.col-list{
+  margin-top:64px;
+  display:grid; grid-template-columns:repeat(2,1fr); gap:14px;
+}
+.col-card{
+  display:block;
+  border:1px solid var(--line); background:var(--white);
+  padding:32px 34px 36px;
+  text-decoration:none;
+  transition:border-color .3s;
+}
+.col-card:hover{ border-color:var(--accent); }
+.col-card-meta{
+  display:flex; align-items:center; gap:14px;
+  font-size:12px; letter-spacing:.1em; color:var(--sub);
+}
+.col-card-meta .col-tag{
+  border:1px solid var(--line);
+  padding:2px 10px;
+  font-size:11px; letter-spacing:.08em;
+}
+.col-card h3{
+  font-family:var(--mincho);
+  font-size:19px; font-weight:600;
+  letter-spacing:.1em; color:var(--ink);
+  line-height:1.8;
+  margin:16px 0 12px;
+}
+.col-card p{ font-size:14.5px; color:var(--sub); }
+.col-card .svc-more{ margin-top:20px; }
+.col-badge{
+  display:inline-block;
+  margin-left:auto;
+  font-size:11px; letter-spacing:.14em;
+  color:var(--accent);
+}
+.col-empty{
+  margin-top:28px;
+  font-size:13px; letter-spacing:.08em; color:var(--sub);
+}
+
+/* ── 記事ページ ── */
+.art{ background:var(--paper); padding:88px 0 130px; }
+.art .wrap{ max-width:800px; }
+.art-title{
+  font-family:var(--mincho);
+  font-weight:600;
+  font-size:clamp(23px,3.2vw,32px);
+  letter-spacing:.1em; color:var(--ink);
+  line-height:1.8;
+}
+/* H1内のサブ見出し（小さめ・細め・グレー寄り） */
+.art-title-sub{
+  display:block;
+  margin-top:14px;
+  font-family:var(--gothic);
+  font-size:clamp(13.5px,1.6vw,16px);
+  font-weight:400;
+  letter-spacing:.08em;
+  color:var(--sub);
+  line-height:1.9;
+}
+/* サブ見出しの折り返しは語の区切りだけで行う */
+.art-title-sub .nb{ display:inline-block; }
+.art-meta{
+  margin-top:20px;
+  display:flex; align-items:center; gap:16px;
+  font-size:12.5px; letter-spacing:.1em; color:var(--sub);
+}
+.art-meta .col-tag{
+  border:1px solid var(--line);
+  padding:2px 10px;
+  font-size:11px;
+}
+.art-lead{
+  margin-top:40px; padding-top:36px;
+  border-top:1px solid var(--line);
+  font-size:16px; color:var(--text);
+}
+
+/* 目次 */
+.art-toc{
+  margin-top:48px;
+  border:1px solid var(--line); background:var(--white);
+  padding:28px 34px 30px;
+}
+.art-toc-title{
+  font-family:var(--mincho);
+  font-size:15px; font-weight:600;
+  letter-spacing:.22em; color:var(--ink);
+  margin-bottom:16px;
+}
+.art-toc ol{
+  list-style:none;
+  counter-reset:toc;
+}
+.art-toc li{
+  counter-increment:toc;
+  margin-bottom:8px;
+  font-size:14.5px;
+}
+.art-toc li::before{
+  content:counter(toc, decimal-leading-zero);
+  font-size:11px; letter-spacing:.1em;
+  color:var(--accent);
+  margin-right:14px;
+}
+.art-toc a{
+  color:var(--text); text-decoration:none;
+  border-bottom:1px solid transparent;
+  transition:color .3s, border-color .3s;
+}
+.art-toc a:hover{ color:var(--accent); border-color:var(--accent); }
+
+/* 本文（privacy.htmlの本文スタイルを基準に、読み物向けに行間広め） */
+.art-body{ margin-top:24px; }
+.art-body h2{
+  font-family:var(--mincho);
+  font-size:20px; font-weight:600;
+  letter-spacing:.12em; color:var(--ink);
+  line-height:1.8;
+  margin:72px 0 22px;
+  padding-bottom:14px;
+  border-bottom:1px solid var(--line);
+  scroll-margin-top:90px;
+}
+.art-body h3{
+  font-size:16px; font-weight:600;
+  letter-spacing:.1em; color:var(--ink);
+  margin:36px 0 10px;
+}
+.art-body p{
+  font-size:16px; line-height:2;
+  margin-bottom:20px;
+}
+.art-body ul{ list-style:none; margin:0 0 20px; }
+.art-body li{
+  font-size:16px; line-height:2;
+  padding-left:1.2em; text-indent:-1.2em;
+  margin-bottom:6px;
+}
+.art-body li::before{ content:"・"; color:var(--accent); }
+
+/* 表（早見表など。スマホは横スクロール） */
+.art-table-wrap{ margin:0 0 20px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+.art-body table{
+  width:100%; min-width:480px;
+  border-collapse:collapse;
+  background:var(--white);
+  font-size:14.5px; line-height:1.8;
+}
+.art-body th, .art-body td{
+  border:1px solid var(--line);
+  padding:12px 16px;
+  text-align:left; vertical-align:top;
+}
+.art-body th{
+  font-family:var(--mincho);
+  font-weight:600; letter-spacing:.08em;
+  color:var(--ink);
+  background:var(--paper);
+  white-space:nowrap;
+}
+
+/* 現場からのひとこと（専門家のコメント枠） */
+.art-voice{
+  margin:28px 0 24px;
+  padding:22px 26px;
+  background:var(--white);
+  border-left:2px solid var(--accent);
+  border-top:1px solid var(--line);
+  border-right:1px solid var(--line);
+  border-bottom:1px solid var(--line);
+}
+.art-voice-title{
+  font-family:var(--mincho);
+  font-size:14px; font-weight:600;
+  letter-spacing:.16em; color:var(--ink);
+  margin-bottom:10px;
+}
+.art-voice p{ font-size:15px; line-height:2; margin:0; }
+
+/* よくある質問 */
+.art-faq{ margin-top:8px; }
+.art-faq dt{
+  font-weight:600; font-size:16px; line-height:2;
+  color:var(--ink);
+  padding-left:1.4em; text-indent:-1.4em;
+  margin-top:26px;
+}
+.art-faq dt::before{
+  content:"Q";
+  font-family:var(--mincho);
+  color:var(--accent);
+  margin-right:12px;
+}
+.art-faq dd{
+  font-size:16px; line-height:2;
+  color:var(--text);
+  margin:6px 0 0 1.4em;
+}
+
+/* まとめ */
+.art-summary{
+  margin-top:72px;
+  border:1px solid var(--line); background:var(--white);
+  padding:32px 36px;
+}
+.art-summary h2{
+  font-family:var(--mincho);
+  font-size:18px; font-weight:600;
+  letter-spacing:.18em; color:var(--ink);
+  margin-bottom:16px;
+  scroll-margin-top:90px;
+}
+.art-summary p{ font-size:16px; line-height:2; }
+.art-summary p + p{ margin-top:12px; }
+
+/* 執筆情報（任意・静かに） */
+.art-note{
+  margin-top:44px;
+  font-size:12.5px; letter-spacing:.08em; color:var(--sub);
+}
+
+/* ── レスポンシブ ── */
+@media (max-width:900px){
+  .col-sec{ padding:72px 0 96px; }
+  .col-list{ grid-template-columns:1fr; margin-top:48px; }
+  .col-card{ padding:26px 24px 30px; }
+  .art{ padding:64px 0 96px; }
+  .art-toc{ padding:24px 22px 26px; }
+  .art-body h2{ margin-top:56px; }
+  .art-summary{ padding:26px 22px; margin-top:56px; }
+}

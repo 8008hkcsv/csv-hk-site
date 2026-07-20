@@ -1,0 +1,164 @@
+/* ============================================================
+   CSV CONSULTING LIMITED — サービス詳細ページ（下層）専用スタイル
+   style.css と併用。配色・書体・余白のルールはトップページと共通。
+   ============================================================ */
+
+/* 下層はヒーローが無いためヘッダーを常時表示（privacy.htmlと同方式） */
+.sv-page header nav{ display:flex !important; }
+.sv-page .menu-btn{ display:none !important; }
+.sv-page header{ background:rgba(251,250,247,.97); box-shadow:0 1px 0 var(--line); padding:14px 40px; }
+.sv-page .brand{ color:var(--ink); }
+.sv-page .brand small{ color:var(--sub); }
+.sv-page header nav a{ color:var(--text); white-space:nowrap; }
+.sv-page .nav-cta{ border-color:var(--ink); color:var(--ink); }
+
+/* ── ページヒーロー（朝の香港・控えめな高さ） ── */
+.sv-hero{
+  position:relative;
+  padding:150px 0 72px;
+  min-height:340px;
+  display:flex; align-items:flex-end;
+  background:#1e2a3a url('../images/hero-morning.webp') center 40%/cover no-repeat;
+}
+.sv-hero::before{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(180deg, rgba(24,34,48,.52), rgba(24,34,48,.38));
+}
+.sv-hero .wrap{ position:relative; z-index:1; width:100%; }
+.sv-hero-en{
+  font-size:11px; letter-spacing:.4em;
+  color:rgba(255,255,255,.72); text-transform:uppercase;
+  margin-bottom:16px;
+}
+.sv-hero h1{
+  font-family:var(--mincho);
+  font-weight:600;
+  font-size:clamp(26px,3.6vw,40px);
+  color:#fff; letter-spacing:.14em; line-height:1.7;
+  text-shadow:0 1px 18px rgba(20,28,40,.45);
+}
+.sv-hero-tag{
+  margin-top:18px;
+  font-size:16px; letter-spacing:.12em;
+  color:rgba(255,255,255,.86);
+  text-shadow:0 1px 10px rgba(20,28,40,.4);
+}
+
+/* ── パンくず ── */
+.crumb{ background:var(--paper); border-bottom:1px solid var(--line); }
+.crumb .wrap{
+  display:flex; gap:10px; align-items:center;
+  padding-top:14px; padding-bottom:14px;
+  font-size:12px; letter-spacing:.1em; color:var(--sub);
+}
+.crumb a{ color:var(--sub); text-decoration:none; }
+.crumb a:hover{ color:var(--accent); }
+.crumb span::before{ content:"›"; margin-right:10px; color:#c9c4b8; }
+
+/* ── 導入リード文 ── */
+.sv-intro{ background:var(--paper); padding:96px 0; }
+.sv-intro p{ font-size:16px; max-width:720px; }
+.sv-intro p + p{ margin-top:14px; }
+
+/* ── サービスイメージ写真（リード文の下・静かな余白で） ── */
+.sv-visual{ margin:56px 0 0; border:1px solid var(--line); }
+.sv-visual img{ display:block; width:100%; height:auto; }
+
+/* ── 課題（PROBLEM） ── */
+.prb-grid{
+  margin-top:64px;
+  display:grid; grid-template-columns:1fr 1fr;
+  border-top:1px solid var(--line); border-left:1px solid var(--line);
+}
+.prb{
+  padding:36px 36px 40px;
+  border-right:1px solid var(--line); border-bottom:1px solid var(--line);
+}
+.prb h4{
+  font-family:var(--mincho);
+  font-size:19px; font-weight:600;
+  letter-spacing:.1em; color:var(--ink);
+  margin-bottom:12px;
+}
+.prb p{ font-size:16px; }
+
+/* 3項目のときは3列（PROBLEM/MENU共通） */
+.prb-grid.cols3{ grid-template-columns:repeat(3,1fr); }
+
+/* ── 提供メニュー（SERVICE MENU） ── */
+.menu-list{
+  margin-top:64px;
+  display:grid; grid-template-columns:repeat(2,1fr); gap:14px;
+}
+.menu-list.cols3{ grid-template-columns:repeat(3,1fr); }
+.menu-item{
+  border:1px solid var(--line); background:var(--white);
+  padding:22px 28px;
+}
+.menu-item b{
+  display:block;
+  font-family:var(--mincho);
+  font-size:19px; font-weight:600;
+  letter-spacing:.12em; color:var(--ink);
+}
+.menu-item span{ display:block; margin-top:8px; font-size:16px; color:var(--sub); }
+
+/* ── 特徴（FEATURE） ── */
+.feat-list{ margin-top:64px; border-top:1px solid var(--line); }
+.feat{
+  display:grid; grid-template-columns:64px 1fr;
+  gap:28px; align-items:baseline;
+  padding:44px 0;
+  border-bottom:1px solid var(--line);
+}
+.feat-no{ font-size:12px; letter-spacing:.2em; color:var(--accent); }
+.feat h4{
+  font-family:var(--mincho);
+  font-size:19px; font-weight:600;
+  letter-spacing:.1em; color:var(--ink);
+  margin-bottom:14px;
+}
+.feat p{ font-size:16px; max-width:760px; }
+
+/* ── サービスの流れ（FLOW） ── */
+.flow-list{ margin-top:64px; border-top:1px solid var(--line); }
+.flow{
+  display:grid; grid-template-columns:120px 220px 1fr;
+  gap:28px; align-items:baseline;
+  padding:30px 0;
+  border-bottom:1px solid var(--line);
+}
+.flow-no{ font-size:12px; letter-spacing:.24em; color:var(--accent); text-transform:uppercase; }
+.flow h4{
+  font-family:var(--mincho);
+  font-size:18px; font-weight:600;
+  letter-spacing:.12em; color:var(--ink);
+}
+.flow p{ font-size:16px; }
+
+/* ── レスポンシブ ── */
+@media (max-width:900px){
+  .sv-page header{ padding:14px 12px 14px 24px; }
+  .sv-page header nav{ gap:10px; }
+  .sv-page header nav a{ font-size:11px; letter-spacing:.06em; }
+  .sv-page .nav-cta{ padding:8px 10px; }
+}
+
+/* 幅の狭いスマホ：ロゴを少し縮めてナビとの間隔を確保 */
+@media (max-width:480px){
+  .sv-page header{ padding-left:16px; }
+  .sv-page .brand img{ height:30px; }
+  /* スマホはロゴでトップに戻れるため「トップページ」リンクは非表示 */
+  .sv-page header nav a:first-child{ display:none; }
+  .sv-hero{ padding:130px 0 52px; min-height:280px; }
+  .sv-hero h1{ font-size:24px; letter-spacing:.1em; }
+  .sv-intro{ padding:72px 0; }
+  .sv-visual{ margin-top:40px; }
+  .prb-grid, .prb-grid.cols3{ grid-template-columns:1fr; margin-top:48px; }
+  .prb{ padding:28px 24px 32px; }
+  .menu-list, .menu-list.cols3{ grid-template-columns:1fr; margin-top:48px; }
+  .feat-list{ margin-top:48px; }
+  .feat{ grid-template-columns:1fr; gap:8px; padding:32px 0; }
+  .flow-list{ margin-top:48px; }
+  .flow{ grid-template-columns:1fr; gap:6px; padding:24px 0; }
+}
