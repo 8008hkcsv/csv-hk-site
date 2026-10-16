@@ -70,37 +70,21 @@ section{ padding:146px 0; scroll-margin-top:64px; }
 }
 
 /* ========== ヘッダー ========== */
+/* ヘッダーは常に白背景・通常色（スクロール切替は2026-10-16に廃止） */
 header{
   position:fixed; top:0; left:0; width:100%;
   z-index:50;
   display:flex; justify-content:space-between; align-items:center;
-  padding:22px 40px;
-  transition:background .4s ease, box-shadow .4s ease, padding .4s ease;
-}
-header.on{
+  padding:14px 40px;
   background:#fbfaf7;
   box-shadow:0 1px 0 var(--line);
-  padding:14px 40px;
 }
-/* ヒーロー上のすりガラスヘッダー（backdrop-filter非対応は半透明濃紺で代替） */
-body:not(.sv-page) header:not(.on){
-  background:rgba(30,42,58,.55);
-  border-bottom:1px solid rgba(255,255,255,.2);
-}
-@supports ((backdrop-filter: blur(12px)) or (-webkit-backdrop-filter: blur(12px))){
-  body:not(.sv-page) header:not(.on){
-    background:rgba(30,42,58,.13);
-    -webkit-backdrop-filter:blur(12px);
-    backdrop-filter:blur(12px);
-  }
-}
-header.on{ border-bottom:none; }
 .brand{
   font-family:var(--mincho);
   font-size:25px;
   font-weight:700;
   letter-spacing:.3em;
-  color:#fff;
+  color:var(--ink);
   text-decoration:none;
   transition:color .4s;
 }
@@ -110,17 +94,12 @@ header.on{ border-bottom:none; }
   font-size:11.5px;
   font-weight:400;
   letter-spacing:.28em;
-  color:rgba(255,255,255,.75);
+  color:var(--sub);
   transition:color .4s;
 }
-header.on .brand{ color:var(--ink); }
-header.on .brand small{ color:var(--sub); }
 
-/* 画像ロゴ（ヒーロー上=白抜き / 白ヘッダー=通常版に切替） */
+/* 画像ロゴ（常時通常版） */
 .brand img{ display:block; height:46px; width:auto; }
-.brand .logo-d{ display:none; }
-header.on .brand .logo-l{ display:none; }
-header.on .brand .logo-d{ display:block; }
 .sv-page .brand img{ height:44px; }
 .ft-logo{ display:block; height:44px; width:auto; }
 
@@ -128,17 +107,16 @@ header nav{ display:flex; gap:30px; align-items:center; }
 header nav a{
   font-size:12px;
   letter-spacing:.14em;
-  color:rgba(255,255,255,.9);
+  color:var(--text);
   text-decoration:none;
   transition:color .3s;
 }
-header.on nav a{ color:var(--text); }
 header nav a:hover{ color:var(--accent); }
 .nav-cta{
-  border:1px solid rgba(255,255,255,.55);
+  border:1px solid var(--ink);
+  color:var(--ink);
   padding:9px 22px;
 }
-header.on .nav-cta{ border-color:var(--ink); color:var(--ink); }
 .nav-cta:hover{ background:var(--ink); border-color:var(--ink); color:#fff !important; }
 
 /* ハンバーガー（スマホのみ表示） */
@@ -151,12 +129,11 @@ header.on .nav-cta{ border-color:var(--ink); color:var(--ink); }
 .menu-btn span{
   display:block;
   width:24px; height:1px;
-  background:#fff;
+  background:var(--ink);
   margin:8px auto 0;
   transition:transform .35s ease, background .35s ease;
 }
 .menu-btn span:first-child{ margin-top:0; }
-header.on .menu-btn span{ background:var(--ink); }
 .menu-btn.open span{ background:var(--ink); }
 .menu-btn.open span:first-child{ transform:translateY(4.5px) rotate(24deg); }
 .menu-btn.open span:last-child{ transform:translateY(-4.5px) rotate(-24deg); }
@@ -300,7 +277,7 @@ header.on .menu-btn span{ background:var(--ink); }
   font-weight:600;
   font-size:clamp(18px,2.4vw,26px);
   letter-spacing:.3em;
-  color:#fff;
+  color:var(--ink);
   text-shadow:0 1px 20px rgba(20,28,40,.55);
   text-align:center;
   line-height:2.2;
@@ -642,7 +619,7 @@ footer{
 /* ========== レスポンシブ ========== */
 @media (max-width:900px){
   .wrap{ padding:0 24px; }
-  header, header.on{ padding:14px 12px 14px 24px; }
+  header{ padding:14px 12px 14px 24px; }
   .brand{ font-size:22px; }
   .brand small{ font-size:10px; }
   .brand img, .sv-page .brand img{ height:36px; }

@@ -1,9 +1,5 @@
 /* CSV CONSULTING LIMITED — サイト共通スクリプト */
 
-// ── ヘッダー：スクロールで白背景に ──
-const hd = document.getElementById('hd');
-addEventListener('scroll', () => hd.classList.toggle('on', scrollY > 60), { passive: true });
-
 // ── スマホ用メニュー開閉 ──
 const menuBtn = document.getElementById('menuBtn');
 const spMenu = document.getElementById('spMenu');
